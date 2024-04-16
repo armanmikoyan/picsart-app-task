@@ -18,35 +18,47 @@ exports.registerUser =  async (username, password) => {
 }
 
 exports.updateUsername = async (username, newUsername) => { 
-   try {
+   try 
+   {
       const isUpdated = await User.findOneAndUpdate({username}, {username : newUsername});
       
-      if (!isUpdated) {
+      if (!isUpdated) 
+      {
          throw new Error("User is not found!");
       }
-   } catch (err) {
+   } 
+   catch (err) 
+   {
      throw new Error(err);
    }
 }
 
 exports.updatePassword = async (username, newPassword) => {
-   try {
+   try 
+   {
       const isUpdated = await User.findOneAndUpdate({username}, {password : newPassword});
-      if (!isUpdated) {
+      if (!isUpdated) 
+      {
          throw new Error("Usern is not found")
       }
-   } catch (err) {
+   } 
+   catch (err) 
+   {
       throw new Error(err);
    }
 }
 
 exports.deleteUser = async (username) => {
-   try {
+   try 
+   {
       const isDeleted = await User.findOneAndDelete({username});
-      if (!isDeleted) {
+      if (!isDeleted) 
+      {
          throw new Error("User is not found")
       }
-   } catch (err) {
+   } 
+   catch (err) 
+   {
       throw new Error(err);
    }
 }

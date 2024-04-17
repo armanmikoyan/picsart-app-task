@@ -34,7 +34,8 @@ const logoutService = () => {
    console.log("Logout successfully")
 }
 
-module.exports = {
+module.exports = 
+{
    loginService,
    logoutService
 }

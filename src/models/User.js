@@ -2,16 +2,19 @@ const mongoose = require('mongoose');
 const postSchema = require('./Post');
 
 const userSchema = new mongoose.Schema({
-    username: {
+    username: 
+    {
         type: String,
         required: true,
         unique: true 
     },
-    password: {
+    password: 
+    {
         type: String,
         required: true
     },
-    token: {
+    token: 
+    {
         type: String,
     },
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]

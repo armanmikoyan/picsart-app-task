@@ -4,17 +4,14 @@ const dotenv = require('dotenv');
 const UserRoutes = require('./routes/userRoutes')
 const AuthRoutes = require('./routes/authRoutes')
 const PostRoutes = require('./routes/postRoutes')
-const authMiddleware  = require('./middlewares/authMiddleware')
  
 dotenv.config();
 const app = express();
 app.use(express.json())
 
-
 app.use('/user', UserRoutes);
 app.use('/auth', AuthRoutes);
 app.use('/userpost', PostRoutes);
-
 
 (async function start() {
    try 

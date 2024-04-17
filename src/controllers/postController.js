@@ -48,9 +48,8 @@ const updatePostController = async (req, res) => {
    }
 }
 
-
-
-module.exports = {
+module.exports = 
+{
    postController,
    deletePostController,
    updatePostController

@@ -63,7 +63,8 @@ const deleteUserController = async (req, res) => {
    }
 }
 
-module.exports = {
+module.exports = 
+{
    registerUserController,
    updateUsernameController,
    updatePasswordController,

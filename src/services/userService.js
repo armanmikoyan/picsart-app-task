@@ -1,6 +1,7 @@
 const User = require('../models/User')
+const bcrypt = require('bcrypt')
 
-exports.registerUser =  async (username, password) => { 
+const registerUserService =  async (username, password) => { 
    try {
       const existsUser = await User.findOne({username});
       if (existsUser)
@@ -8,16 +9,17 @@ exports.registerUser =  async (username, password) => {
          throw new Error("Username already exists");
       }
 
-      const newUser = new User({username, password});
+      const hashedPassword = await bcrypt.hash(password, 10); 
+      const newUser = new User({username, password: hashedPassword });
       await newUser.save();
    }
    catch (err)
    {
-     throw new Error("Error registering user");
+     throw new Error("Error registering user " + err.message);
    }
 }
 
-exports.updateUsername = async (username, newUsername) => { 
+const updateUsernameService = async (username, newUsername) => { 
    try 
    {
       const isUpdated = await User.findOneAndUpdate({username}, {username : newUsername});
@@ -33,10 +35,12 @@ exports.updateUsername = async (username, newUsername) => {
    }
 }
 
-exports.updatePassword = async (username, newPassword) => {
+const updatePasswordService = async (username, newPassword) => {
    try 
    {
-      const isUpdated = await User.findOneAndUpdate({username}, {password : newPassword});
+      const newhashedPassword = await bcrypt.hash(newPassword, 10);
+
+      const isUpdated = await User.findOneAndUpdate({username}, {password : newhashedPassword});
       if (!isUpdated) 
       {
          throw new Error("Usern is not found")
@@ -48,7 +52,7 @@ exports.updatePassword = async (username, newPassword) => {
    }
 }
 
-exports.deleteUser = async (username) => {
+const deleteUserService = async (username) => {
    try 
    {
       const isDeleted = await User.findOneAndDelete({username});
@@ -64,4 +68,10 @@ exports.deleteUser = async (username) => {
 }
 
 
+module.exports = {
+   registerUserService,
+   updateUsernameService,
+   updatePasswordService,
+   deleteUserService
+}
 

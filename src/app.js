@@ -2,11 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const UserRoutes = require('./routes/userRoutes')
+const AuthRoutes = require('./routes/authRoutes')
  
 dotenv.config();
 const app = express();
 app.use(express.json())
+
 app.use('/user', UserRoutes);
+app.use('/auth', AuthRoutes);
 
 (async function start() {
    try 

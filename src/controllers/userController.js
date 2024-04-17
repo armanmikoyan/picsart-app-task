@@ -1,11 +1,11 @@
 const userService = require('../services/userService')
 
-exports.registerUser = async (req, res) => {
+const registerUserController = async (req, res) => {
    const {username, password} = req.body;
 
    try 
    {
-      await userService.registerUser(username, password);
+      await userService.registerUserService(username, password);
       console.log("User created successfully");
       res.status(201).json({ message: "User created successfully" });
    }
@@ -16,11 +16,11 @@ exports.registerUser = async (req, res) => {
    }
 }
 
-exports.updateUsername = async (req, res) => {
+const updateUsernameController = async (req, res) => {
    const {username, newUsername } = req.body;
    try 
    {
-      await userService.updateUsername(username, newUsername);
+      await userService.updateUsernameService(username, newUsername);
       console.log("Username updated successfully");
       res.status(201).json({ message: "Username updated successfully" });
    } 
@@ -31,11 +31,11 @@ exports.updateUsername = async (req, res) => {
    }
 }
 
-exports.updatePassword = async (req, res) => {
+const updatePasswordController = async (req, res) => {
    const {username, newPassword} = req.body;
    try 
    {
-      await userService.updatePassword(username, newPassword);
+      await userService.updatePasswordService(username, newPassword);
       console.log("Password updated successfully");
       res.status(201).json({ message: 'Password updated successfully' });
 
@@ -47,11 +47,11 @@ exports.updatePassword = async (req, res) => {
    }
 }
 
-exports.deleteUser = async (req, res) => {
+const deleteUserController = async (req, res) => {
    const {username} = req.body;
    try 
    {
-      await userService.deleteUser(username);
+      await userService.deleteUserService(username);
       console.log("User deleted successfully");
       res.status(201).json({ message: 'User deleted successfully' });
 
@@ -63,7 +63,9 @@ exports.deleteUser = async (req, res) => {
    }
 }
 
-
-
-
-
+module.exports = {
+   registerUserController,
+   updateUsernameController,
+   updatePasswordController,
+   deleteUserController,
+}

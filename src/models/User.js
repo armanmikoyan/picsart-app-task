@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const postSchema = require('./Post')
 
 const userSchema = new mongoose.Schema({
     username: 
@@ -11,7 +12,8 @@ const userSchema = new mongoose.Schema({
     {
         type: String,
         required: true
-    }
+    },
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }] 
 });
 
 const User = mongoose.model('User', userSchema);

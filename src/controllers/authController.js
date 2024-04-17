@@ -45,5 +45,4 @@ const logoutController = async (req, res) => {
 module.exports = {
    loginController,
    logoutController,
-   loggedInUsers
 }

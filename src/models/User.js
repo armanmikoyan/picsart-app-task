@@ -1,21 +1,22 @@
 const mongoose = require('mongoose');
-const postSchema = require('./Post')
+const postSchema = require('./Post');
 
 const userSchema = new mongoose.Schema({
-    username: 
-    {
+    username: {
         type: String,
         required: true,
         unique: true 
     },
-    password: 
-    {
+    password: {
         type: String,
         required: true
     },
-    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }] 
+    token: {
+        type: String,
+    },
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
 });
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User; 
+module.exports = User;
